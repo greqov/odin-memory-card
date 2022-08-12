@@ -1,6 +1,21 @@
 import React from 'react';
 import Card from './Card';
 
+function shuffle(arr) {
+  const array = arr;
+  let currentIndex = array.length;
+  let randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 export default function Main() {
   const cards = [
     {
@@ -53,7 +68,7 @@ export default function Main() {
     },
   ];
 
-  const cardEls = cards.map((card) => <Card key={card.id} label={card.label} />);
+  const cardEls = shuffle(cards).map((card) => <Card key={card.id} label={card.label} />);
 
   return (
     <main className="container max-w-4xl mx-auto mb-6 px-4">

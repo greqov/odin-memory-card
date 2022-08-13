@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
 function shuffle(arr) {
@@ -68,10 +68,49 @@ export default function Main() {
     },
   ];
 
-  const cardEls = shuffle(cards).map((card) => <Card key={card.id} label={card.label} />);
+  const [clickedCards, setClickedCards] = useState([]);
+  const [bestScore, setBestScore] = useState(0);
+
+  useEffect(() => {
+    if (clickedCards.length > bestScore) {
+      setBestScore(clickedCards.length);
+    }
+  }, [clickedCards]);
+
+  useEffect(() => {
+    // TODO: remove this useEffect
+    console.log(clickedCards);
+  }, [clickedCards]);
+
+  const handleClick = (id) => {
+    console.log('Such increase!', id);
+    setClickedCards((prev) => {
+      if (!prev.includes(id)) {
+        return [...prev, id];
+      }
+      return [];
+    });
+  };
+
+  const cardEls = shuffle(cards).map((card) => (
+    <Card key={card.id} id={card.id} label={card.label} handleClick={handleClick} />
+  ));
+
+  // TODO: add reset button
 
   return (
     <main className="container max-w-4xl mx-auto mb-6 px-4">
+      <div className="mb-4">
+        <div>
+          <span>Game score: </span>
+          <span>{clickedCards.length}</span>
+        </div>
+
+        <div>
+          <span>Best score: </span>
+          <span>{bestScore}</span>
+        </div>
+      </div>
       <div className="grid gap-4 grid-cols-6">{cardEls}</div>
     </main>
   );

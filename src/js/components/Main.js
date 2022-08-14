@@ -1,20 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
-
-function shuffle(arr) {
-  const array = arr;
-  let currentIndex = array.length;
-  let randomIndex;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
+import shuffle from '../utils/shuffle';
 
 function getImgLabel(str) {
   return str.slice(2, -4).replace('-', ' ');

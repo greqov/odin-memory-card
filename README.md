@@ -7,11 +7,12 @@ _Simple React.js memory card app for The Odin Project_
 
 ## Features:
 
-- ...
+- it works;
+- contains cute animal images.
 
 ## TODO:
 
-- [ ] clean up README, fill TODO/Features sections
+- [ ] add 'reset' button?
 
 ## Development
 
@@ -27,7 +28,7 @@ npm run build
 npm run start
 ```
 
-- publish 'dist' folder to github pages
+- publish `dist` folder to github pages
 
 ```bash
 npm run deploy

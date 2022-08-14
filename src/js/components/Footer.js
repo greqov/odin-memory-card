@@ -29,6 +29,16 @@ export default function Footer() {
             </svg>
             <span>Github</span>
           </a>
+          <span>|</span>
+          <a
+            className="hover:text-orange-500 transition"
+            href="https://www.flaticon.com/free-stickers/animal"
+            target="_blank"
+            rel="noreferrer"
+            title="animal stickers"
+          >
+            Animal stickers created by Stickers - Flaticon
+          </a>
         </div>
       </div>
     </footer>

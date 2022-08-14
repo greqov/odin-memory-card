@@ -1,13 +1,14 @@
 import React from 'react';
 
-export default function Card({ id, label, handleClick }) {
+export default function Card({ id, label, image, handleClick }) {
   return (
     <div
       id={id}
-      className="outline-dashed outline-2 outline-offset-2"
-      onClick={(e) => handleClick(e.target.id)}
+      className="js-card p-1 outline-dashed outline-2 outline-offset-2 text-center italic cursor-pointer hover:bg-orange-100 transition"
+      onClick={(e) => handleClick(e.target.closest('.js-card').id)}
     >
-      {label}
+      <img src={image} alt={label} />
+      <span>{label}</span>
     </div>
   );
 }

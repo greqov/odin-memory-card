@@ -16,58 +16,18 @@ function shuffle(arr) {
   return array;
 }
 
-export default function Main() {
-  const cards = [
-    {
-      id: 0,
-      label: '0',
-    },
-    {
-      id: 1,
-      label: '1',
-    },
-    {
-      id: 2,
-      label: '2',
-    },
-    {
-      id: 3,
-      label: '3',
-    },
-    {
-      id: 4,
-      label: '4',
-    },
-    {
-      id: 5,
-      label: '5',
-    },
-    {
-      id: 6,
-      label: '6',
-    },
-    {
-      id: 7,
-      label: '7',
-    },
-    {
-      id: 8,
-      label: '8',
-    },
-    {
-      id: 9,
-      label: '9',
-    },
-    {
-      id: 10,
-      label: '10',
-    },
-    {
-      id: 11,
-      label: '11',
-    },
-  ];
+function getImgLabel(str) {
+  return str.slice(2, -4).replace('-', ' ');
+}
 
+const requireContext = require.context('../../img', true, /^\.\/.*\.png$/);
+const cards = requireContext.keys().map((item, index) => ({
+  id: index,
+  label: getImgLabel(item),
+  image: requireContext(item),
+}));
+
+export default function Main() {
   const [clickedCards, setClickedCards] = useState([]);
   const [bestScore, setBestScore] = useState(0);
 
@@ -77,13 +37,7 @@ export default function Main() {
     }
   }, [clickedCards]);
 
-  useEffect(() => {
-    // TODO: remove this useEffect
-    console.log(clickedCards);
-  }, [clickedCards]);
-
   const handleClick = (id) => {
-    console.log('Such increase!', id);
     setClickedCards((prev) => {
       if (!prev.includes(id)) {
         return [...prev, id];
@@ -93,7 +47,13 @@ export default function Main() {
   };
 
   const cardEls = shuffle(cards).map((card) => (
-    <Card key={card.id} id={card.id} label={card.label} handleClick={handleClick} />
+    <Card
+      key={card.id}
+      id={card.id}
+      label={card.label}
+      image={card.image}
+      handleClick={handleClick}
+    />
   ));
 
   // TODO: add reset button

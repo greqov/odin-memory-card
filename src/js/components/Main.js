@@ -47,16 +47,8 @@ export default function Main() {
   };
 
   const cardEls = shuffle(cards).map((card) => (
-    <Card
-      key={card.id}
-      id={card.id}
-      label={card.label}
-      image={card.image}
-      handleClick={handleClick}
-    />
+    <Card key={card.id} card={card} handleClick={handleClick} />
   ));
-
-  // TODO: add reset button
 
   return (
     <main className="container max-w-4xl mx-auto mb-6 px-4">

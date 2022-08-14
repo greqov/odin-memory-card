@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default function Card({ id, label, image, handleClick }) {
+export default function Card({ card, handleClick }) {
+  const { id, label, image } = card;
+
   return (
     <div
       id={id}
